@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from dojo import views
+from . import views
 
 urlpatterns = [
-    url('^$', views.post_list)
+    url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
 ]

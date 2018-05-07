@@ -1,4 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
-def post_list(request):
-    return render(request, 'dojo/post_list.html')
+def mysum(request, numbers):
+    # numbers = [int(num) for num in numbers.split("/")]
+    # result = sum(map(int, numbers.split("/")))
+    result = sum(map(lambda s: int(s or 0), numbers.split("/")))
+    return HttpResponse(result)
