@@ -121,5 +121,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+ngrok.exe
 
 # End of https://www.gitignore.io/api/python,windows
