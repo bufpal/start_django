@@ -40,6 +40,6 @@ def excel_download(request):
     filepath = os.path.join(settings.BASE_DIR, "hotfoot-software.xls")
     filename = os.path.basename(filepath)
     with open(filepath, "rb") as f:
-        response = HttpResponse(f, content_type='application/vnd.ms-excel') # content_type 의 default 는 text
+        response = HttpResponse(f, content_type='application/vnd.ms-excel') # content_type(MIME type) default = text/html
         response['Content-disposition'] = 'attachment; filename="{}"'.format(filename)
         return response
