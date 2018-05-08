@@ -35,6 +35,7 @@ def post_list3(request):
     }, json_dumps_params={"ensure_ascii": False})
     return json_response
 
+
 def excel_download(request):
     filepath = os.path.join(settings.BASE_DIR, "hotfoot-software.xls")
     filename = os.path.basename(filepath)

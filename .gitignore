@@ -122,5 +122,6 @@ $RECYCLE.BIN/
 *.lnk
 
 ngrok.exe
+db.sqlite3
 
 # End of https://www.gitignore.io/api/python,windows
