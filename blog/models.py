@@ -9,6 +9,12 @@ def lnglat_validator(value):
     
 
 class Post(models.Model):
+    STATUS_CHOICES = (
+        ('d', 'Draft'),
+        ('p', 'Published'),
+        ('w', 'Withdrawn'),
+    )
+    
     author = models.CharField(max_length=20)
     title = models.CharField(max_length=100, verbose_name="Subject", help_text="input title, max 100")
     content = models.TextField(verbose_name="Content")
@@ -18,5 +24,6 @@ class Post(models.Model):
         help_text="\"longtitude,latitude\" type",
         blank=True
     )
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
