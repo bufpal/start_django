@@ -1,6 +1,6 @@
 # blog/admin.py
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 
 # admin.site.register(Post)
@@ -8,7 +8,7 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'status', 'content_size', 'created_at', 'updated_at']
+    list_display = ['id', 'author', 'title', 'status', 'content_size', 'created_at', 'updated_at']
     actions = ['make_draft', 'make_published']
 
 
@@ -28,3 +28,7 @@ class PostAdmin(admin.ModelAdmin):
         self.message_user(request, 'Changed {} item status to Published'.format(query_count))
     make_published.short_description="change checked to 'published'"
 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'post_id', 'author', 'message']
