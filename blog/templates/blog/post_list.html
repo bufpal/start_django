@@ -9,6 +9,13 @@
 
 <body>
     <h1>Start Django</h1>
+
+    <form action="" method="GET">
+        <input type="text" name="q" value="{{ q }}">
+        <input type="submit" value="Search">
+    </form>
+
+
     <ul>
         {% for post in post_list %}
             <li>
