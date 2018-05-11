@@ -1,0 +1,4 @@
+django==1.13.11
+django-extensions
+django-debug-toolbar
+ipython[notebook]
