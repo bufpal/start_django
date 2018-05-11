@@ -9,7 +9,16 @@
 
 <body>
     <h1>Start Django</h1>
-
+    <ul>
+        {% for post in post_list %}
+            <li>
+                {{ post.id }}
+                {{ post.title}}
+                by {{ post.author}}
+                at {{ post.updated_at}}
+            </li>
+        {% endfor %}
+    </ul>
     <p>It's just beginning</p>
 </body>
 </html>
