@@ -1,6 +1,6 @@
 # blog/admin.py
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 
 
 # admin.site.register(Post)
@@ -32,3 +32,8 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['id', 'post_id', 'author', 'message']
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['tag',]
