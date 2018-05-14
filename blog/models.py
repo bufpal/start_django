@@ -1,6 +1,7 @@
+import re
+from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
-import re
 
 
 def lnglat_validator(value):
@@ -15,7 +16,7 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
     
-    author = models.CharField(max_length=20)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=100, verbose_name="Subject", help_text="input title, max 100")
     content = models.TextField(verbose_name="Content")
     tag = models.CharField(max_length=50, blank=True, help_text="write tags")

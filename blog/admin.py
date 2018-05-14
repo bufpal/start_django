@@ -8,7 +8,7 @@ from .models import Post, Comment, Tag
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'author', 'title', 'status', 'content_size', 'created_at', 'updated_at']
+    list_display = ['id', 'user', 'title', 'status', 'content_size', 'created_at', 'updated_at']
     actions = ['make_draft', 'make_published']
 
 
