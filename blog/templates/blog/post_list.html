@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Start Django</title>
-</head>
+{% extends "blog/layout.html" %}
 
-<body>
-    <h1>Start Django</h1>
+{% block content %}
+<form action="" method="GET">
+    <input type="text" name="q" value="{{ q }}">
+    <input type="submit" value="Search">
+</form>
 
-    <form action="" method="GET">
-        <input type="text" name="q" value="{{ q }}">
-        <input type="submit" value="Search">
-    </form>
 
-    
-    <ul>
-        {% for post in post_list %}
-            <li>
-                {{ post.id }}
-                <a href="/blog/{{ post.id }}"> {{ post.title}} </a>
-                by {{ post.author}}
-                at {{ post.updated_at}}
-            </li>
-        {% endfor %}
-    </ul>
-    <p>It's just beginning</p>
-</body>
-</html>
+<ul>
+    {% for post in post_list %}
+        <li>
+            {{ post.id }}
+            <a href="/blog/{{ post.id }}"> {{ post.title}} </a>
+            by {{ post.author}}
+            at {{ post.updated_at}}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
