@@ -1,4 +1,5 @@
 import re
+from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
@@ -34,8 +35,13 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
     class Meta:
         ordering = ['-id']
+
+    
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args = [self.id])    
 
 
 class Comment(models.Model):
