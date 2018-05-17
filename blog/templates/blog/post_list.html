@@ -1,21 +1,55 @@
 {% extends "blog/layout.html" %}
 
 {% block content %}
-<form action="" method="GET">
-    <input type="text" name="q" value="{{ q }}">
-    <input type="submit" value="Search">
-</form>
 
+<div class="container">
+    <div class="jumbotron">
+        <h1>Start Django</h1>
+        <p>I will be the winner</p>
+        <p>
+            <a class="btn btn-lg btn-primary" href="http://facebook.com/groups/askdjango">
+                    Goto Home &raquo;
+            </a>
+        </p>
+    </div>
 
-<ul>
-    {% for post in post_list %}
-        <li>
-            {{ post.id }}
-            <a href="{% url 'blog:post_detail' post.id %}"> {{ post.title }} </a>
-            by {{ post.author}}
-            at {{ post.updated_at}}
-        </li>
-    {% endfor %}
-</ul>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-info">
+                <ul>
+                    <li>http://localhost:8000/blog/ 으로 접속해 보세요</li>
+                </ul>
+            </div>        
+
+            <p>
+                <form action="" method="GET">
+                    <input type="text" name="q" value="{{ q }}">
+                    <input class="btn btn-primary" type="submit" value="Search">
+                </form>
+            </p>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Author</td>
+                        <td>Last updated</td>
+                    </tr>
+                </thead>
+            {% for post in post_list %}
+                <tbody>
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td><a href="{% url 'blog:post_detail' post.id %}"> {{ post.title }} </a></td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.updated_at }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
