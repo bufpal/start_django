@@ -28,6 +28,7 @@ class Post(models.Model):
     )
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     tag_set = models.ManyToManyField('Tag', blank=True)
+    ip = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

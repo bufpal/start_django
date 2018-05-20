@@ -1,5 +1,7 @@
+from django.contrib.auth.models import User
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from .forms import PostForm
 from .models import Post, Comment
 
 
@@ -15,6 +17,7 @@ def post_list(request):
         'q': q,
     })
 
+
 def post_detail(request, id):
     # try:
     #     post = Post.objects.get(id=id)
@@ -25,4 +28,38 @@ def post_detail(request, id):
 
     return render(request, 'blog/post_detail.html', {
         'post': post,
+    })
+
+
+def post_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = User.objects.get(id=1)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
+            return redirect('blog:post_list')
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_new.html', {
+        'form': form,
+    })
+
+
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method=='POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = User.objects.get(id=1)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
+            return redirect(post)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_new.html', {
+        'form': form,
     })
