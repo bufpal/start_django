@@ -1,7 +1,7 @@
 import os
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import PostForm
 from .models import Post
 
@@ -46,8 +46,22 @@ def post_new(request):
     })
 
 
-# def post_edit(request):
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
 
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
+            return redirect('dojo:post_list')
+    else:
+        form = PostForm(instance=post)
+    
+    return render(request, 'dojo/post_new.html', {
+        'form': form,
+    })
 
 def mysum(request, numbers):
     # numbers = [int(num) for num in numbers.split("/")]
