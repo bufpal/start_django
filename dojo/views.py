@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 from .forms import PostForm
 from .models import Post
 
-def post_form(request):
+def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -41,9 +41,12 @@ def post_form(request):
     else:
         form = PostForm()
 
-    return render(request, 'dojo/post_form.html', {
+    return render(request, 'dojo/post_new.html', {
         'form': form,
     })
+
+
+# def post_edit(request):
 
 
 def mysum(request, numbers):
