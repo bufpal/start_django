@@ -31,8 +31,10 @@ def post_form(request):
             '''
 
             # 방법4)
+            '''
             Post.objects.create(**form.cleaned_data)
-
+            '''
+            form.save()
             return redirect('dojo:post_list')
     else:
         form = PostForm()
