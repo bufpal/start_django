@@ -34,7 +34,9 @@ def post_form(request):
             '''
             Post.objects.create(**form.cleaned_data)
             '''
-            form.save()
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
             return redirect('dojo:post_list')
     else:
         form = PostForm()
