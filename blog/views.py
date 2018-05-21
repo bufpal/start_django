@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import PostForm
+from .forms import CommentForm, PostForm
 from .models import Post, Comment
 
 
@@ -26,8 +26,19 @@ def post_detail(request, id):
 
     post = get_object_or_404(Post, id=id)
 
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post_id = id
+            comment.save()
+            return redirect(post)
+    else:
+        form = CommentForm()        
+
     return render(request, 'blog/post_detail.html', {
         'post': post,
+        'form': form,
     })
 
 
@@ -63,3 +74,16 @@ def post_edit(request, id):
     return render(request, 'blog/post_new.html', {
         'form': form,
     })
+
+
+# def post_comment(request, id):
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('blog:post_list')
+#     else:
+#         form = CommentForm()
+#     return render(request, 'blog/post_detail.html', {
+#         'form': form
+#     })

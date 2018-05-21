@@ -21,7 +21,15 @@
                     </li>
                 {% endfor %}
             </ul>
-            
+
+            <p>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="float-right">
+            </form>
+            </p>
+
             <hr/>
             <a href="{% url 'blog:post_list' %}" class="btn btn-primary"> To list </a>
             <a href="{% url 'blog:post_edit' post.id %}" class="btn btn-default">Modify</a>

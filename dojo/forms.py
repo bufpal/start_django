@@ -1,5 +1,5 @@
 from django import forms
-from . models import Post
+from . models import GameUser, Post
 
 
 class PostForm(forms.ModelForm):
@@ -14,3 +14,12 @@ class PostForm(forms.ModelForm):
             self.instance.save()
         return self.instance
     '''
+
+
+class GameUserForm(forms.ModelForm):
+    model = GameUser
+    fields = ['gameserver', 'username']
+
+
+    def clean_username(self):
+        return self.cleaned_data.get('username','').strip()
