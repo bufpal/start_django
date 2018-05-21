@@ -23,3 +23,4 @@ class GameUserForm(forms.ModelForm):
 
     def clean_username(self):
         return self.cleaned_data.get('username','').strip()
+        
