@@ -2,6 +2,7 @@
 
 
 {% block content %}
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -18,5 +19,9 @@
     </div>
 </div>
 
+<script>
+    var dom = document.getElementById('{{form.user_agent.id_for_label}}');
+    dom.value = navigator.userAgent;
+</script>
 
 {% endblock %}
