@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
@@ -32,6 +33,7 @@ def post_detail(request, id):
             comment = form.save(commit=False)
             comment.post_id = id
             comment.save()
+            messages.success(request, 'Successfully replied to post..')
             return redirect(post)
     else:
         form = CommentForm()        
@@ -50,6 +52,7 @@ def post_new(request):
             post.user = User.objects.get(id=1)
             post.ip = request.META['REMOTE_ADDR']
             post.save()
+            messages.success(request, 'New post created successfully')
             return redirect('blog:post_list')
     else:
         form = PostForm()
@@ -68,6 +71,7 @@ def post_edit(request, id):
             post.user = User.objects.get(id=1)
             post.ip = request.META['REMOTE_ADDR']
             post.save()
+            messages.success(request, 'Modfied Post')
             return redirect(post)
     else:
         form = PostForm(instance=post)
