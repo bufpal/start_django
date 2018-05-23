@@ -1,5 +1,7 @@
 {% extends "blog/layout.html" %}
 
+{% load imagekit %}
+
 {% block content %}
 
 <div class="container">
@@ -9,13 +11,20 @@
 
             {% if post.photo %}
                 <img src="{{ post.photo.url }}" alt="" style="max-width: 100%">
+
+                {% thumbnail "300x300" post.photo %}
+                
+                {% thumbnail "300x300" post.photo as thumb %}
+                <img src="{{thumb.url}}" width="{{thumb.width}}" height="{{thumb.heigth}}">
+
+                {% thumbnail "300x300" post.photo -- alt="testimg" %}
             {% endif %}
             
                 {{ post.content|linebreaks }}
             
             <hr/>
             
-            <h3>Comments </h3>
+            <h3>Comments</h3>
             
             <ul>
                 {% for comment in post.comment_set.all %}
