@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <table>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <table>{{ form.as_table }}</table>
                     <input type="submit" value="Post" class="btn btn-primary">
