@@ -20,7 +20,7 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=100, verbose_name="Subject", help_text="input title, max 100")
     content = models.TextField(verbose_name="Content")
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField(blank=True, upload_to='blog/post/%Y/%m/%d')
     tag = models.CharField(max_length=50, blank=True, help_text="write tags")
     lnglat = models.CharField(max_length=30,
         validators=[lnglat_validator],
