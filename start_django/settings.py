@@ -132,7 +132,14 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+# MEDIA files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 INTERNAL_IPS = ['127.0.0.1']
+
 
 from django.contrib.messages import constants
 
