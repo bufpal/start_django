@@ -22,7 +22,7 @@ from django.shortcuts import redirect
 urlpatterns = [
     url(r'^$', lambda r: redirect('blog:post_list'), name='root'),
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^dojo/', include('dojo.urls', namespace='dojo')),
     url(r'^shop/', include('shop.urls', namespace='shop')),

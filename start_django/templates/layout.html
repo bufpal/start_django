@@ -30,18 +30,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">회원가입</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{{ user }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{{ user.date_joined }}</a>
-                </li>
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">SIGN UP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">SIGN IN</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">{{ user }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">SIGN OUT</a>
+                    </li>                    
+                {% endif %}
             </ul>
         </div>
     </nav>

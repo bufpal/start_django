@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 
 
+def profile(request):
+    return render(request, 'accounts/profile.html')
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
