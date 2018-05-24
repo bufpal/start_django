@@ -8,6 +8,7 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content', 'user_agent']
         widgets = {
             'user_agent': forms.HiddenInput,
+            # 'latlng': 
         }
 
 

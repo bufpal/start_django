@@ -53,7 +53,7 @@ def post_new(request):
             post.ip = request.META['REMOTE_ADDR']
             post.save()
             messages.success(request, 'New post created successfully')
-            return redirect('blog:post_list')
+            return redirect(post)
     else:
         form = PostForm()
     return render(request, 'blog/post_new.html', {
