@@ -56,7 +56,7 @@ def post_new(request):
             return redirect(post)
     else:
         form = PostForm()
-    return render(request, 'blog/post_new.html', {
+    return render(request, 'blog/post_form.html', {
         'form': form,
     })
 
