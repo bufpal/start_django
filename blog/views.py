@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CommentForm, PostForm
@@ -49,7 +48,7 @@ def post_new(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = User.objects.get(id=1)
+            post.user = request.user
             post.ip = request.META['REMOTE_ADDR']
             post.save()
             messages.success(request, 'New post created successfully')
@@ -68,7 +67,7 @@ def post_edit(request, id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = User.objects.get(id=1)
+            post.user = request.user
             post.ip = request.META['REMOTE_ADDR']
             post.save()
             messages.success(request, 'Modfied Post')
@@ -78,16 +77,3 @@ def post_edit(request, id):
     return render(request, 'blog/post_new.html', {
         'form': form,
     })
-
-
-# def post_comment(request, id):
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('blog:post_list')
-#     else:
-#         form = CommentForm()
-#     return render(request, 'blog/post_detail.html', {
-#         'form': form
-#     })
