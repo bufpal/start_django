@@ -1,0 +1,7 @@
+<h1>Delete ? {{post.title}}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{{ post.get_absolute_url }}"> No-wooo</a>
+    <input type="submit" value="Delete" class="btn btn-warning">
+</form>
