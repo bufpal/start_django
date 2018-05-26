@@ -77,3 +77,12 @@ def post_edit(request, id):
     return render(request, 'blog/post_new.html', {
         'form': form,
     })
+
+
+def comment_list(request):
+    qs = Comment.objects.all()
+    post_qs = Post.objects.all()
+    return render(request, 'blog/comment_list.html', {
+        'comment_list': qs,
+        'post_list': post_qs,
+    })
