@@ -80,9 +80,7 @@ def post_edit(request, id):
 
 
 def comment_list(request):
-    qs = Comment.objects.all()
-    post_qs = Post.objects.all()
+    qs = Comment.objects.all().select_related('post')
     return render(request, 'blog/comment_list.html', {
         'comment_list': qs,
-        'post_list': post_qs,
     })
