@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^cbv/(?P<pk>\d+)/delete/$', views_cbv.post_delete, name='cbv_post_delete'),
 
     url(r'^comments/$', views.comment_list, name='comment_list'),
+    url(r'^tests/$', views.test_list, name='test_list'),
 ]

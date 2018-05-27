@@ -6,7 +6,7 @@ from .models import Post, Comment
 
 
 def post_list(request):
-    qs = Post.objects.all()
+    qs = Post.objects.all().select_related('user')
 
     q = request.GET.get('q', '')
     if q:
@@ -16,6 +16,7 @@ def post_list(request):
         'post_list': qs,
         'q': q,
     })
+
 
 
 def post_detail(request, id):
@@ -83,4 +84,11 @@ def comment_list(request):
     qs = Comment.objects.all().select_related('post')
     return render(request, 'blog/comment_list.html', {
         'comment_list': qs,
+    })
+
+
+def test_list(request):
+    qs = Post.objects.all().prefetch_related('comment_set')
+    return render(request, 'blog/test_list.html', {
+        'post_list': qs,
     })

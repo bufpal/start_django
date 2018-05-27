@@ -5,9 +5,10 @@
 <ul>
     {% for comment in comment_list %}
         <li>
-        {{ comment.message }}
-        {{ comment.post}}
+        <strong> COMMENT : </strong>{{ comment.message }}
+        <strong> POST : </strong>{{ comment.updated_at }}
         </li>
+        
     {% endfor %}
 </ul>
 

@@ -1,0 +1,20 @@
+{% extends 'blog/layout.html' %}
+
+{% block content %}
+
+{% for post in post_list %}
+<ul>
+    <li>
+        <ul>
+            {{ post.title }}
+            {% for comment in post.comment_set.all %}
+            <li>
+                {{ comment.message }}
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+{% endfor %}
+
+{% endblock %}
