@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     'imagekit',
+    'raven.contrib.django.raven_compat',
     'accounts',
     'blog',
     'dojo',
@@ -150,3 +151,19 @@ MESSAGE_TAGS = {constants.ERROR: 'danger'}
 
 
 NAVER_CLIENT_ID = 'w2gWwxkrQad55qJj70_W'
+
+import raven
+
+GIT_ROOT = BASE_DIR
+
+if os.path.exists(os.path.join(GIT_ROOT, '.git')):
+    release = raven.fetch_git_sha(GIT_ROOT)
+else:
+    release = 'dev'
+
+RAVEN_CONFIG = {
+    'dsn': 'https://966c2f882e9a47a9a329f72dc23a6b59:341d3afc687e47e4892e150ff688c470@sentry.io/1214497',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': release
+}
