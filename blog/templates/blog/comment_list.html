@@ -6,7 +6,7 @@
     {% for comment in comment_list %}
         <li>
         <strong> COMMENT : </strong>{{ comment.message }}
-        <strong> POST : </strong>{{ comment.updated_at }}
+        <strong> POST : </strong>{{ comment.post.title }}
         </li>
         
     {% endfor %}

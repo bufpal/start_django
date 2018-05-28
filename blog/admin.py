@@ -25,6 +25,7 @@ class PostAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         return qs.prefetch_related('tag_set', 'comment_set')
 
+
     def content_size(self, post):
         return "{}".format(len(post.content))
     content_size.short_description="Content Length"
