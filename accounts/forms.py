@@ -28,3 +28,4 @@ class LoginForm(AuthenticationForm):
         if answer != 6:
             raise forms.ValidationError('Wrong Answer!')
         return answer
+    
